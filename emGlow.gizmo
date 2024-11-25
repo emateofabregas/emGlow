@@ -86,7 +86,6 @@ inputs 1+1
 channels rgba
 white {{0.0001+parent.intensity*0.1}}
 add {{-parent.tolerance*0.001}}
-black_clamp false
 maskChannelMask none
 name Grade
 xpos 106
