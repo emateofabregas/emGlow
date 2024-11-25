@@ -1,258 +1,276 @@
 Group {
- name emGlow
- inputs 2
- tile_color 0xf2873aff
- addUserKnob {20 User l emGlow}
- addUserKnob {6 view_glow l "View Glow" t "View Glow Effect." +STARTLINE}
- addUserKnob {26 main_text l "@b;Main" t "Main section."}
- addUserKnob {3 sample t "Resolution in the effect. More samples = smooth transition. Max samples: 11."}
- sample 11
- addUserKnob {7 an l anamorph t "Simulates anamorphic lens flares by altering the default 1:1 flare shape."}
- an 1
- addUserKnob {7 intensity t "Intensity of the effect (Glow)." R 0 10}
- intensity 2
- addUserKnob {6 tint_panelDropped l "panel dropped state" +HIDDEN +STARTLINE}
- tint_panelDropped true
- addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
- color_rgb_panelDropped true
- addUserKnob {41 value l tint t "Color of the effect (Glow)." T Tint.value}
- addUserKnob {7 size t "Size of the effect (Glow)." R 0.0001 100}
- size 1
- addUserKnob {7 a l falloff t "lIt makes the transition smooth. (1) Sharp, more than 1 value is smoother." R 1 10}
- a 1
- addUserKnob {7 tolerance t "It makes a \"Contrast\" in black values." R 0 2}
- addUserKnob {41 black_clamp l "black clamp" -STARTLINE T Grade.black_clamp}
- addUserKnob {41 maximum l highlights t "Range in highlights. Enable the checkbox 'white clamp' to make that work." T Clamp.maximum}
- addUserKnob {41 white_clamp l "white clamp" t "Output that is more than white is changed to 1." -STARTLINE T Clamp.maximum_enable}
- addUserKnob {7 b +INVISIBLE R 1 100}
- b 1
- addUserKnob {7 overscan t "How many percent of the crop is overscanning." R 0 100}
- overscan 20
- addUserKnob {6 crop l "enable crop" t "Cropping overscan. " -STARTLINE}
- addUserKnob {26 ""}
- addUserKnob {26 _1 l mask T ""}
- addUserKnob {41 maskChannelInput l "" -STARTLINE T Merge3.maskChannelInput}
- addUserKnob {41 inject -STARTLINE T Merge3.inject}
- addUserKnob {41 invert_mask l invert -STARTLINE T Merge3.invert_mask}
- addUserKnob {41 fringe -STARTLINE T Merge3.fringe}
- addUserKnob {41 mix t "Mix of the Mask Input." T Merge3.mix}
- addUserKnob {26 ""}
- addUserKnob {26 Autor l "" +STARTLINE T "<font color=\"grey\">emGlow v1.6 | emateofabregas.com | 2024 </font>"}
+name emGlow
+inputs 2
+tile_color 0xf2873aff
+addUserKnob {20 User l emGlow t "Exponential Glow effect. "}
+addUserKnob {6 glow_only l "Glow Only" t "View Glow Effect." +STARTLINE}
+addUserKnob {6 clamp_alpha l "Clamp Alpha" t "It clamps the alpha channel overall." -STARTLINE}
+clamp_alpha true
+addUserKnob {41 in l channels t "Channels where the glow is affected. By default is 'rgb' channel. The alpha is always getting by the beauty/rgba layer." T Shuffle1.in}
+addUserKnob {26 main_text l "@b;Main" t "Main section."}
+addUserKnob {3 sample t "Resolution in the effect. More samples = smooth transition. Max samples: 11."}
+sample 6
+addUserKnob {7 anamorph t "Simulates anamorphic lens flares by altering the default 1:1 flare shape."}
+anamorph 1
+addUserKnob {7 intensity t "Intensity of the effect (Glow)." R 0 10}
+intensity 1
+addUserKnob {6 tint_panelDropped l "panel dropped state" +HIDDEN +STARTLINE}
+tint_panelDropped true
+addUserKnob {6 color_rgb_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+color_rgb_panelDropped true
+addUserKnob {41 value l tint t "Tint color of the effect (Glow)." T Multiply1.value}
+addUserKnob {7 size t "Size of the effect (Glow)." R 0.0001 100}
+size 10
+addUserKnob {7 b l "falloff mix" t "It makes the transition smooth. (1) Sharp, more than 1 value is smoother. Falloff min and max knobs are using an exponential expression and falloff min is the minimum expression and max is the maximum expression." R 1 10}
+b 1
+addUserKnob {7 a l "falloff max" t "It makes the transition smooth. (1) Sharp, more than 1 value is smoother. Falloff min and max knobs are using an exponential expression and falloff min is the minimum expression and max is the maximum expression." R 1 10}
+a 2
+addUserKnob {7 highlights t "Checkbox 'enable highlights' to make that work. It clamps the highlight values (maximum) before the (Glow) effect. " R 0 10}
+highlights 1
+addUserKnob {6 enable_highlights l "enable highlights" t "Checbox this box if you want to play with highlights (maxiumum values)." -STARTLINE}
+addUserKnob {7 tolerance t "It makes a \"Contrast\" in black values in the effect (Glow)." R 0 10}
+addUserKnob {7 overscan t "How many percent of the crop is overscanning." R 0 100}
+overscan 50
+addUserKnob {6 crop l "enable crop" t "Crops overscan to root format. " -STARTLINE}
+addUserKnob {41 black_clamp l "black clamp" t "Black clamp overall (includes the alpha channel)." T Grade.black_clamp}
+addUserKnob {41 white_clamp l "white clamp" t "White clamp overall (includes the alpha channel)." -STARTLINE T Grade.white_clamp}
+addUserKnob {26 ""}
+addUserKnob {26 _1 l mask T ""}
+addUserKnob {41 maskChannelInput l "" -STARTLINE T Merge3.maskChannelInput}
+addUserKnob {41 inject -STARTLINE T Merge3.inject}
+addUserKnob {41 invert_mask l invert -STARTLINE T Merge3.invert_mask}
+addUserKnob {41 fringe -STARTLINE T Merge3.fringe}
+addUserKnob {41 mix t "Mix of the Mask Input." T Merge3.mix}
+addUserKnob {26 ""}
+addUserKnob {26 Autor l "" +STARTLINE T "<font color=\"grey\">emGlow v1.8 | emateofabregas.com | 2024 </font>"}
 }
- Input {
-  inputs 0
-  name InputMask
-  xpos 106
-  ypos 37
-  number 1
- }
- Input {
-  inputs 0
-  name InputImg
-  xpos 0
-  ypos 36
- }
- Dot {
-  name Dot1
-  xpos 34
-  ypos 83
- }
-set Nb47e2400 [stack 0]
- Merge2 {
-  inputs 2
-  operation mask
-  name Merge3
-  xpos 106
-  ypos 80
-  disable {{"!\[exists parent.input1]"}}
- }
-set Nb47e2800 [stack 0]
-push $Nb47e2800
- Grade {
-  inputs 1+1
-  white {{0.0001+parent.intensity*0.1}}
-  add {{-parent.tolerance*0.001}}
-  black_clamp false
-  maskChannelMask none
-  name Grade
-  xpos 106
-  ypos 110
- }
- Clamp {
-  channels rgba
-  minimum_enable false
-  maximum_enable false
-  maskChannelMask none
-  name Clamp
-  xpos 106
-  ypos 139
-  disable {{"maximum == 0"}}
- }
-set Nb47e3000 [stack 0]
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*1024} {parent.BlurMaster.size*pow(a,b)*1024}}
-  crop false
-  name Blur10
-  label "\[value size.w]"
-  xpos 1172
-  ypos 174
-  disable {{"sample < 11"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*512} {parent.BlurMaster.size*pow(a,b)*512}}
-  crop false
-  name Blur9
-  label "\[value size.w]"
-  xpos 1070
-  ypos 176
-  disable {{"sample < 10"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*256} {parent.BlurMaster.size*pow(a,b)*256}}
-  crop false
-  name Blur8
-  label "\[value size.w]"
-  xpos 973
-  ypos 176
-  disable {{"sample < 9"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*128} {parent.BlurMaster.size*pow(a,b)*128}}
-  crop false
-  name Blur7
-  label "\[value size.w]"
-  xpos 880
-  ypos 175
-  disable {{"sample < 8"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*64} {parent.BlurMaster.size*pow(a,b)*64}}
-  crop false
-  name Blur6
-  label "\[value size.w]"
-  xpos 786
-  ypos 175
-  disable {{"sample < 7"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*32} {parent.BlurMaster.size*pow(a,b)*32}}
-  crop false
-  name Blur1
-  label "\[value size.w]"
-  xpos 682
-  ypos 176
-  disable {{"sample < 6"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*16} {parent.BlurMaster.size*pow(a,b)*16}}
-  crop false
-  name Blur5
-  label "\[value size.w]"
-  xpos 578
-  ypos 176
-  disable {{"sample < 5"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*8} {parent.BlurMaster.size*pow(a,b)*8}}
-  crop false
-  name Blur4
-  label "\[value size.w]"
-  xpos 484
-  ypos 176
-  disable {{"sample < 4"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*4} {parent.BlurMaster.size*pow(a,b)*4}}
-  crop false
-  name Blur3
-  label "\[value size.w]"
-  xpos 391
-  ypos 175
-  disable {{"sample < 3"}}
- }
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.BlurMaster.size*pow(a,b)*2} {parent.BlurMaster.size*pow(a,b)*2}}
-  crop false
-  name Blur2
-  label "\[value size.w]"
-  xpos 287
-  ypos 176
-  disable {{"sample < 2"}}
- }
+Input {
+inputs 0
+name InputMask
+xpos 106
+ypos 37
+number 1
+}
+Input {
+inputs 0
+name InputImg
+xpos -84
+ypos 36
+}
+Dot {
+name Dot1
+xpos -50
+ypos 83
+}
+set N41e1b400 [stack 0]
+Shuffle {
+in rgb
+in2 rgba
+alpha alpha2
+name Shuffle1
+xpos -8
+ypos 80
+}
+Merge2 {
+inputs 2
+operation mask
+name Merge3
+xpos 106
+ypos 80
+disable {{"!\[exists parent.input1]"}}
+}
+set N41e1b800 [stack 0]
+push $N41e1b800
+Grade {
+inputs 1+1
+channels rgba
+white {{0.0001+parent.intensity*0.1}}
+add {{-parent.tolerance*0.001}}
+black_clamp false
+maskChannelMask none
+name Grade
+xpos 106
+ypos 110
+}
+Clamp {
+channels rgb
+minimum_enable false
+maximum {{parent.highlights}}
+maximum_enable {{parent.enable_highlights}}
+name Clamp1
+xpos 106
+ypos 134
+}
+set N80e46800 [stack 0]
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*1024} {parent.BlurMaster.size*pow(a,b)*1024}}
+crop false
+name Blur10
+label "\[value size.w]"
+xpos 1172
+ypos 174
+disable {{"sample < 11"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*512} {parent.BlurMaster.size*pow(a,b)*512}}
+crop false
+name Blur9
+label "\[value size.w]"
+xpos 1070
+ypos 176
+disable {{"sample < 10"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*256} {parent.BlurMaster.size*pow(a,b)*256}}
+crop false
+name Blur8
+label "\[value size.w]"
+xpos 973
+ypos 176
+disable {{"sample < 9"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*128} {parent.BlurMaster.size*pow(a,b)*128}}
+crop false
+name Blur7
+label "\[value size.w]"
+xpos 880
+ypos 175
+disable {{"sample < 8"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*64} {parent.BlurMaster.size*pow(a,b)*64}}
+crop false
+name Blur6
+label "\[value size.w]"
+xpos 786
+ypos 175
+disable {{"sample < 7"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*32} {parent.BlurMaster.size*pow(a,b)*32}}
+crop false
+name Blur1
+label "\[value size.w]"
+xpos 682
+ypos 176
+disable {{"sample < 6"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*16} {parent.BlurMaster.size*pow(a,b)*16}}
+crop false
+name Blur5
+label "\[value size.w]"
+xpos 578
+ypos 176
+disable {{"sample < 5"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*8} {parent.BlurMaster.size*pow(a,b)*8}}
+crop false
+name Blur4
+label "\[value size.w]"
+xpos 484
+ypos 176
+disable {{"sample < 4"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*4} {parent.BlurMaster.size*pow(a,b)*4}}
+crop false
+name Blur3
+label "\[value size.w]"
+xpos 391
+ypos 175
+disable {{"sample < 3"}}
+}
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.BlurMaster.size*pow(a,b)*2} {parent.BlurMaster.size*pow(a,b)*2}}
+crop false
+name Blur2
+label "\[value size.w]"
+xpos 287
+ypos 176
+disable {{"sample < 2"}}
+}
 push 0
-push $Nb47e3000
- Blur {
-  channels rgba
-  size {{parent.size} {parent.BlurMaster.size.w*an}}
-  crop false
-  name BlurMaster
-  xpos 164
-  ypos 186
-  disable {{"sample == 0"}}
- }
-push $Nb47e3000
- Merge2 {
-  inputs 12+1
-  operation plus
-  name MergeBlur
-  xpos 106
-  ypos 232
- }
- Multiply {
-  channels rgba
-  value_panelDropped true
-  maskChannelInput -rgba.alpha
-  name Tint
-  xpos 106
-  ypos 271
- }
-set Nb4864400 [stack 0]
-push $Nb47e2400
- Merge2 {
-  inputs 2
-  operation plus
-  Achannels rgb
-  name MergeGlow
-  xpos 0
-  ypos 271
-  disable {{"parent.intensity == 0"}}
- }
-push $Nb4864400
- Switch {
-  inputs 2
-  which 1
-  name view_glow
-  xpos 0
-  ypos 306
-  disable {{parent.view_glow}}
- }
- Crop {
-  box {{parent.crop?0:-parent.overscan} {parent.crop?0:-parent.overscan} {parent.crop?width:width+parent.overscan} {parent.crop?height:height+parent.overscan}}
-  name CropOverscan
-  xpos 0
-  ypos 335
- }
- Output {
-  name Output1
-  xpos 0
- }
+push $N80e46800
+Blur {
+channels rgba
+size {{parent.size} {parent.BlurMaster.size.w*anamorph}}
+crop false
+name BlurMaster
+xpos 164
+ypos 186
+disable {{"sample == 0"}}
+}
+push $N80e46800
+Merge2 {
+inputs 12+1
+operation plus
+name MergeBlur
+xpos 106
+ypos 232
+}
+Multiply {
+channels rgba
+value {1 1 1 1}
+value_panelDropped true
+name Multiply1
+xpos 106
+ypos 260
+}
+Clamp {
+channels alpha
+minimum_enable false
+maximum_enable {{clamp_alpha}}
+name ClampAlpha
+xpos 106
+ypos 290
+}
+push $N41e1b400
+Remove {
+channels rgba
+name Remove1
+xpos -84
+ypos 174
+disable {{!parent.glow_only}}
+}
+Merge2 {
+inputs 2
+operation plus
+name MergeGlow
+xpos -84
+ypos 296
+disable {{"parent.intensity == 0"}}
+}
+Crop {
+box {{parent.crop?0:-parent.overscan} {parent.crop?0:-parent.overscan} {parent.crop?width:width+parent.overscan} {parent.crop?height:height+parent.overscan}}
+name CropOverscan
+xpos -84
+ypos 334
+}
+Output {
+name Output1
+xpos -84
+ypos 374
+}
 end_group
