@@ -6,15 +6,15 @@
 
 A mask input allows you to connect your specific mask only to affect an area in your image. 'The Overscan' feature is available with the crop for more control in your bounding box and a checkbox for cropping the image.
 
-![emGlow_gizmo](https://github.com/user-attachments/assets/9e6e8bfe-5bf3-4ad5-9224-50cd76003462)
+![emGlow_gizmo9](https://github.com/user-attachments/assets/2b22a414-4b1a-49f6-a950-7137a3af119d)
 
 **UPDATES in version 1.9**
 - Simplified the falloff(pow) operation in the glow effect and made it pow of 2 falloff a knob (same algorithm to exposure f-stop). 
 - Added a label following the channels knob.
 
 **UPDATES in version 1.8**
-- You can adjust a specific AOV (no need for it to be rgba/beauty) and after will merge it with the rest: eg. make the Glow effect in RGBA_key and after the merge with the rest and the effect only is in this AOV.
-- Some knob names are modified to make them more attractive, eg: 'View Glow' for 'Glow Only'.
+- You can adjust a specific AOV (no need for it to be rgba/beauty) and after will merge it with the rest: e.g. make the Glow effect in RGBA_key and after the merge with the rest and the effect only is in this AOV.
+- Some knob names are modified to make them more attractive, e.g., 'View Glow' for 'Glow Only.'
 - Split the 'falloff' knob to min and max values.
 - Made more readers the highlight knob and highlight checkbox too.
 - Moved black & white clamp knobs on the bottom. Those knobs affect the values before the effect, which is just for the image. 
