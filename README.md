@@ -8,11 +8,11 @@ A mask input allows you to connect your specific mask only to affect an area in 
 
 ![emGlow_gizmo](https://github.com/user-attachments/assets/9e6e8bfe-5bf3-4ad5-9224-50cd76003462)
 
-** UPDATES in version 1.9**
+**UPDATES in version 1.9**
 - Simplified the falloff(pow) operation in the glow effect and made it pow of 2 falloff a knob (same algorithm to exposure f-stop). 
 - Added a label following the channels knob.
 
-** UPDATES in version 1.8**
+**UPDATES in version 1.8**
 - You can adjust a specific AOV (no need for it to be rgba/beauty) and after will merge it with the rest: eg. make the Glow effect in RGBA_key and after the merge with the rest and the effect only is in this AOV.
 - Some knob names are modified to make them more attractive, eg: 'View Glow' for 'Glow Only'.
 - Split the 'falloff' knob to min and max values.
